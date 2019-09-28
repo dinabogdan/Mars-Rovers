@@ -15,16 +15,19 @@ public final class Rover {
         this.toBeExecutedCommands = toBeExecutedCommands;
     }
 
-    Point getCurrentPosition() {
+    public Point getCurrentPosition() {
         return currentPosition;
     }
 
-    CardinalPoint getCurrentOrientation() {
+    public CardinalPoint getCurrentOrientation() {
         return currentOrientation;
     }
 
     public List<Command> getToBeExecutedCommands() {
-        return Collections.unmodifiableList(this.toBeExecutedCommands);
+        if (toBeExecutedCommands != null) {
+            return Collections.unmodifiableList(this.toBeExecutedCommands);
+        }
+        return Collections.emptyList();
     }
 
     @Override

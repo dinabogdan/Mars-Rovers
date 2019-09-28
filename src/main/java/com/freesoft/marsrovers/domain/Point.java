@@ -1,5 +1,7 @@
 package com.freesoft.marsrovers.domain;
 
+import java.util.Objects;
+
 public final class Point {
 
     private final double x;
@@ -10,11 +12,11 @@ public final class Point {
         this.y = y;
     }
 
-    double getX() {
+    public double getX() {
         return x;
     }
 
-    double getY() {
+    public double getY() {
         return y;
     }
 
@@ -24,6 +26,20 @@ public final class Point {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return Double.compare(point.x, x) == 0 &&
+                Double.compare(point.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     public static final class PointBuilder {

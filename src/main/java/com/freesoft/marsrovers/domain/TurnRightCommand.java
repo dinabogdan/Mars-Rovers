@@ -22,7 +22,7 @@ public final class TurnRightCommand extends Command {
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             case E:
-                futureOrientation = CardinalPoint.N;
+                futureOrientation = CardinalPoint.S;
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             case S:
@@ -30,7 +30,7 @@ public final class TurnRightCommand extends Command {
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             case W:
-                futureOrientation = CardinalPoint.S;
+                futureOrientation = CardinalPoint.N;
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             default:
