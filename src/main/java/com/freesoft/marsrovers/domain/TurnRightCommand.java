@@ -2,7 +2,7 @@ package com.freesoft.marsrovers.domain;
 
 public final class TurnRightCommand extends Command {
 
-    private static final String COMMAND_NAME = "TURN_RIGHT";
+    private static final String COMMAND_NAME = "TURN RIGHT";
 
     private TurnRightCommand(String name) {
         super(name);

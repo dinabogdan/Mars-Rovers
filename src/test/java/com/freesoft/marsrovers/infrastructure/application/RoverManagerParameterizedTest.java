@@ -33,7 +33,7 @@ public class RoverManagerParameterizedTest {
                     .withY(0)
                     .build())
             .build();
-    
+
     @Parameter
     public int index;
     @Parameter(1)
@@ -107,7 +107,96 @@ public class RoverManagerParameterizedTest {
                                         .build()
                                 )
                                 .build()
+                },
+                {
+                        4,
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentPosition(initialPosition)
+                                .withCurrentOrientation(CardinalPoint.E)
+                                .withToBeExecutedCommands(Arrays.asList(
+                                        TurnLeftCommand.aCommand(),
+                                        MoveCommand.aCommand()
+                                        )
+                                )
+                                .build(),
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentOrientation(CardinalPoint.N)
+                                .withCurrentPosition(Point.PointBuilder.aPoint()
+                                        .withX(initialPosition.getX())
+                                        .withY(initialPosition.getY() + 1)
+                                        .build()
+                                )
+                                .build()
+                },
+                {
+                        5,
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentPosition(initialPosition)
+                                .withCurrentOrientation(CardinalPoint.S)
+                                .withToBeExecutedCommands(Arrays.asList(
+                                        TurnLeftCommand.aCommand(),
+                                        MoveCommand.aCommand()
+                                        )
+                                )
+                                .build(),
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentOrientation(CardinalPoint.E)
+                                .withCurrentPosition(Point.PointBuilder.aPoint()
+                                        .withX(initialPosition.getX() + 1)
+                                        .withY(initialPosition.getY())
+                                        .build()
+                                )
+                                .build()
+                },
+                {
+                        6,
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentPosition(initialPosition)
+                                .withCurrentOrientation(CardinalPoint.S)
+                                .withToBeExecutedCommands(Arrays.asList(
+                                        TurnRightCommand.aCommand(),
+                                        MoveCommand.aCommand()
+                                        )
+                                )
+                                .build(),
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentOrientation(CardinalPoint.W)
+                                .withCurrentPosition(Point.PointBuilder.aPoint()
+                                        .withX(initialPosition.getX() - 1)
+                                        .withY(initialPosition.getY())
+                                        .build()
+                                )
+                                .withToBeExecutedCommands(Collections.emptyList())
+                                .build()
+                },
+                {
+                        7,
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentPosition(initialPosition)
+                                .withCurrentOrientation(CardinalPoint.W)
+                                .withToBeExecutedCommands(Arrays.asList(
+                                        MoveCommand.aCommand(),
+                                        MoveCommand.aCommand(),
+                                        TurnLeftCommand.aCommand(),
+                                        MoveCommand.aCommand(),
+                                        MoveCommand.aCommand(),
+                                        MoveCommand.aCommand(),
+                                        TurnLeftCommand.aCommand(),
+                                        MoveCommand.aCommand()
+                                        )
+                                )
+                                .build(),
+                        Rover.RoverBuilder.aRover()
+                                .withCurrentOrientation(CardinalPoint.E)
+                                .withCurrentPosition(Point.PointBuilder.aPoint()
+                                        .withX(1)
+                                        .withY(0)
+                                        .build()
+                                )
+                                .withToBeExecutedCommands(Collections.emptyList())
+                                .build()
                 }
+
         });
     }
 
@@ -121,7 +210,6 @@ public class RoverManagerParameterizedTest {
         RoverMap.INSTANCE.addRover(inputRover);
         roverManager.startRovers();
         Rover resultedRover = RoverMap.INSTANCE.getRovers().get(index);
-
 
         assertNotNull(resultedRover);
         assertEquals(expectedRover.getCurrentOrientation(), resultedRover.getCurrentOrientation());

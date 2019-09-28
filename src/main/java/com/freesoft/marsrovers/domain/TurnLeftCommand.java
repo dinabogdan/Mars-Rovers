@@ -2,7 +2,7 @@ package com.freesoft.marsrovers.domain;
 
 public final class TurnLeftCommand extends Command {
 
-    private static final String COMMAND_NAME = "TURN_LEFT";
+    private static final String COMMAND_NAME = "TURN LEFT";
 
     private TurnLeftCommand(String name) {
         super(name);
@@ -22,7 +22,7 @@ public final class TurnLeftCommand extends Command {
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             case E:
-                futureOrientation = CardinalPoint.S;
+                futureOrientation = CardinalPoint.N;
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             case S:
@@ -30,7 +30,7 @@ public final class TurnLeftCommand extends Command {
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             case W:
-                futureOrientation = CardinalPoint.N;
+                futureOrientation = CardinalPoint.S;
                 System.out.println("Command " + COMMAND_NAME + " executed!");
                 break;
             default:

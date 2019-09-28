@@ -49,11 +49,30 @@ public final class MoveCommand extends Command {
                 throw new IllegalArgumentException();
         }
 
+        if (isInsideThePlateau(plateau, futurePosition)) {
+            return Rover.RoverBuilder.aRover()
+                    .withCurrentOrientation(rover.getCurrentOrientation())
+                    .withToBeExecutedCommands(rover.getToBeExecutedCommands().subList(1, rover.getToBeExecutedCommands().size()))
+                    .withCurrentPosition(futurePosition)
+                    .build();
+        }
         return Rover.RoverBuilder.aRover()
                 .withCurrentOrientation(rover.getCurrentOrientation())
+                .withCurrentPosition(rover.getCurrentPosition())
                 .withToBeExecutedCommands(rover.getToBeExecutedCommands().subList(1, rover.getToBeExecutedCommands().size()))
-                .withCurrentPosition(futurePosition)
                 .build();
+    }
 
+    private boolean isInsideThePlateau(Plateau plateau, Point futurePosition) {
+        final String warnMessage = "WARN! The rover should move to: " + futurePosition.toString() + " which is out of the plateau: " + plateau.toString();
+        if (!(futurePosition.getX() >= plateau.getBottomLeft().getX() && futurePosition.getX() <= plateau.getUpperRight().getX())) {
+            System.out.println(warnMessage);
+            return false;
+        }
+        if (!(futurePosition.getY() >= plateau.getBottomLeft().getY() && futurePosition.getY() <= plateau.getUpperRight().getY())) {
+            System.out.println(warnMessage);
+            return false;
+        }
+        return true;
     }
 }
