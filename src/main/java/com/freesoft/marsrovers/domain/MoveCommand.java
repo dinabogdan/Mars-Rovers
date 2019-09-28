@@ -49,7 +49,7 @@ public final class MoveCommand extends Command {
                 throw new IllegalArgumentException();
         }
 
-        if (plateau.containsPoint.apply(futurePosition) && rover.isNotHittingTheRover.apply(futurePosition)) {
+        if (plateau.containsPoint.apply(futurePosition) && rover.isNotHittingAnotherRover.apply(futurePosition)) {
             return Rover.RoverBuilder.aRover()
                     .withCurrentOrientation(rover.getCurrentOrientation())
                     .withToBeExecutedCommands(rover.getToBeExecutedCommands().subList(1, rover.getToBeExecutedCommands().size()))

@@ -3,6 +3,7 @@ package com.freesoft.marsrovers.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public final class Rover {
 
@@ -11,12 +12,14 @@ public final class Rover {
     private final CardinalPoint currentOrientation;
     private final List<Command> toBeExecutedCommands;
 
-    Function<Point, Boolean> isNotHittingTheRover = (futurePosition) -> {
-        return RoverMap.INSTANCE.getRovers()
+    Function<Point, Boolean> isNotHittingAnotherRover = (futurePosition) -> {
+        List<Rover> rovers = RoverMap.INSTANCE.getRovers()
                 .values()
                 .stream()
                 .filter(r -> r.getId() != this.getId())
-                .anyMatch(r -> r.getCurrentPosition() == futurePosition);
+                .filter(r -> r.getCurrentPosition().equals(futurePosition))
+                .collect(Collectors.toList());
+        return rovers.isEmpty();
     };
 
     private Rover(int id,

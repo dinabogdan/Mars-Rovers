@@ -214,6 +214,5 @@ public class RoverManagerParameterizedTest {
         assertEquals(expectedRover.getCurrentOrientation(), resultedRover.getCurrentOrientation());
         assertEquals(expectedRover.getToBeExecutedCommands(), resultedRover.getToBeExecutedCommands());
         assertEquals(expectedRover.getCurrentPosition(), resultedRover.getCurrentPosition());
-
     }
 }
