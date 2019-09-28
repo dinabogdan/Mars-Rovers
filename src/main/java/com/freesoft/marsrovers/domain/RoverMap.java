@@ -1,6 +1,4 @@
-package com.freesoft.marsrovers.application;
-
-import com.freesoft.marsrovers.domain.Rover;
+package com.freesoft.marsrovers.domain;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,7 +14,14 @@ public enum RoverMap {
     }
 
     public RoverMap addRover(Rover rover) {
-        rovers.put(roverIdCounter.incrementAndGet(), rover);
+        int roverId = roverIdCounter.incrementAndGet();
+        Rover newRover = Rover.RoverBuilder.aRover()
+                .withToBeExecutedCommands(rover.getToBeExecutedCommands())
+                .withCurrentPosition(rover.getCurrentPosition())
+                .withCurrentOrientation(rover.getCurrentOrientation())
+                .withId(roverId)
+                .build();
+        rovers.put(roverId, newRover);
         return this;
     }
 

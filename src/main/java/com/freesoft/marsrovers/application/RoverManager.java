@@ -2,6 +2,7 @@ package com.freesoft.marsrovers.application;
 
 import com.freesoft.marsrovers.domain.Plateau;
 import com.freesoft.marsrovers.domain.Rover;
+import com.freesoft.marsrovers.domain.RoverMap;
 
 public enum RoverManager {
     INSTANCE;

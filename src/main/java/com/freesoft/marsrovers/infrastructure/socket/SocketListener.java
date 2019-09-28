@@ -1,7 +1,7 @@
 package com.freesoft.marsrovers.infrastructure.socket;
 
 import com.freesoft.marsrovers.application.RoverManager;
-import com.freesoft.marsrovers.application.RoverMap;
+import com.freesoft.marsrovers.domain.RoverMap;
 import com.freesoft.marsrovers.domain.Plateau;
 import com.freesoft.marsrovers.domain.Rover;
 

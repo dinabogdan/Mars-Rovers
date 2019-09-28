@@ -1,7 +1,6 @@
-package com.freesoft.marsrovers.infrastructure.application;
+package com.freesoft.marsrovers.application;
 
-import com.freesoft.marsrovers.application.RoverManager;
-import com.freesoft.marsrovers.application.RoverMap;
+import com.freesoft.marsrovers.domain.RoverMap;
 import com.freesoft.marsrovers.domain.*;
 import org.junit.Before;
 import org.junit.Test;
