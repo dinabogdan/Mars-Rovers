@@ -35,7 +35,7 @@ public final class SocketListener implements Runnable {
                     SocketInputParser inputParser = SocketInputParser.INSTANCE;
                     List<String> inputComponents = inputParser.splitInput(inputLine);
                     Plateau plateau = inputParser.createPlateau(inputComponents.get(0), inputComponents.get(1));
-                    List<Rover> rovers = inputParser.createRovers(inputComponents.subList(3, inputComponents.size() + 1));
+                    List<Rover> rovers = inputParser.createRovers(inputComponents.subList(3, inputComponents.size()));
                     rovers.forEach(RoverMap.INSTANCE::addRover);
                     RoverManager.INSTANCE.init(plateau, RoverMap.INSTANCE);
                 } catch (RuntimeException validationEx) {

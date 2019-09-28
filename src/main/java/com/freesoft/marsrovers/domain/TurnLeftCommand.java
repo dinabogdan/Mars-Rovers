@@ -13,12 +13,36 @@ public final class TurnLeftCommand extends Command {
     }
 
     @Override
-    Rover execute(Rover rover) {
-        return null;
-//        return Rover.RoverBuilder.aRover()
-//                .withCurrentPosition(rover.getCurrentPosition())
-//                .with
-//                .build();
+    public Rover execute(Rover rover, Plateau plateau) {
+        System.out.println("Start execution for command " + COMMAND_NAME + "!");
+        CardinalPoint futureOrientation;
+        switch (rover.getCurrentOrientation()) {
+            case N:
+                futureOrientation = CardinalPoint.W;
+                System.out.println("Command " + COMMAND_NAME + " executed!");
+                break;
+            case E:
+                futureOrientation = CardinalPoint.S;
+                System.out.println("Command " + COMMAND_NAME + " executed!");
+                break;
+            case S:
+                futureOrientation = CardinalPoint.E;
+                System.out.println("Command " + COMMAND_NAME + " executed!");
+                break;
+            case W:
+                futureOrientation = CardinalPoint.N;
+                System.out.println("Command " + COMMAND_NAME + " executed!");
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        return Rover.RoverBuilder.aRover()
+                .withCurrentPosition(rover.getCurrentPosition())
+                .withCurrentOrientation(futureOrientation)
+                .withToBeExecutedCommands(rover.getToBeExecutedCommands().subList(1, rover.getToBeExecutedCommands().size()))
+                .build();
+
     }
 
 }

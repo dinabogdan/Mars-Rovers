@@ -15,7 +15,7 @@ public enum SocketInputValidator {
     }
 
     boolean hasNotValidStructure(String[] input) {
-        return (input.length - 2) % 4 == 0;
+        return (input.length - 2) % 4 != 0;
     }
 
     boolean isNotNumber(String inputElement) {

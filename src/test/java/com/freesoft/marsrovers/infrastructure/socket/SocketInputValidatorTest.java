@@ -8,17 +8,17 @@ import static org.junit.Assert.assertTrue;
 public class SocketInputValidatorTest {
 
     @Test
-    public void GIVENAValidInputSequenceWHENValidateItTHENReturnTrue() {
+    public void GIVENAValidInputSequenceWHENCheckIfHasNotAValidStructureTHENReturnFalse() {
         final String[] input = new String[]{"5", "5", "1", "2", "N", "LMLML", "3", "3", "E", "MRMRMRMR"};
         boolean validationResult = SocketInputValidator.INSTANCE.hasNotValidStructure(input);
-        assertTrue(validationResult);
+        assertFalse(validationResult);
     }
 
     @Test
-    public void GIVENAnInvalidInputSequenceWHENValidateItTHENReturnFalse() {
+    public void GIVENAnInvalidInputSequenceWHENCheckIfHasNotAValidStructureTHENReturnTrue() {
         final String[] input = new String[]{"5", "5", "1", "2", "N", "LMLML", "3", "3", "E"};
         boolean validationResult = SocketInputValidator.INSTANCE.hasNotValidStructure(input);
-        assertFalse(validationResult);
+        assertTrue(validationResult);
     }
 
     @Test

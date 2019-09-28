@@ -1,6 +1,7 @@
 package com.freesoft.marsrovers.application;
 
 import com.freesoft.marsrovers.domain.Plateau;
+import com.freesoft.marsrovers.domain.Rover;
 
 public enum RoverManager {
     INSTANCE;
@@ -19,8 +20,15 @@ public enum RoverManager {
 
     public void startRovers() {
         roverMap.getRovers().forEach((id, rover) -> {
-            rover.executeCommands(plateau);
-            roverMap.getRovers().remove(id);
+            executeCommands(id, plateau);
+        });
+    }
+
+    void executeCommands(Integer roverId, Plateau plateau) {
+        Rover rover = roverMap.getRovers().get(roverId);
+        rover.getToBeExecutedCommands().forEach(command -> {
+            Rover newRover = command.execute(roverMap.getRovers().get(roverId), plateau);
+            roverMap.getRovers().put(roverId, newRover);
         });
     }
 }

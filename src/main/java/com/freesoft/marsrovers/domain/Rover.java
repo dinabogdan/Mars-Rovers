@@ -15,11 +15,11 @@ public final class Rover {
         this.toBeExecutedCommands = toBeExecutedCommands;
     }
 
-    public Point getCurrentPosition() {
+    Point getCurrentPosition() {
         return currentPosition;
     }
 
-    public CardinalPoint getCurrentOrientation() {
+    CardinalPoint getCurrentOrientation() {
         return currentOrientation;
     }
 
@@ -27,11 +27,13 @@ public final class Rover {
         return Collections.unmodifiableList(this.toBeExecutedCommands);
     }
 
-    public Point executeCommands(Plateau plateau) {
-        toBeExecutedCommands.stream()
-                .forEach(command -> {
-                });
-        return null;
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "currentPosition=" + currentPosition +
+                ", currentOrientation=" + currentOrientation +
+                ", toBeExecutedCommands=" + toBeExecutedCommands +
+                '}';
     }
 
     public static final class RoverBuilder {

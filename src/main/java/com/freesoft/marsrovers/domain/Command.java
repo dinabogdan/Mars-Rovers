@@ -8,5 +8,5 @@ public abstract class Command {
         this.name = name;
     }
 
-    abstract Rover execute(Rover rover);
+    public abstract Rover execute(Rover rover, Plateau plateau);
 }

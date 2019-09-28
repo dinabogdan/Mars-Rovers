@@ -10,14 +10,22 @@ public final class Point {
         this.y = y;
     }
 
-    public double getX() {
+    double getX() {
         return x;
     }
 
-    public double getY() {
+    double getY() {
         return y;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
     public static final class PointBuilder {
         private double x;
         private double y;

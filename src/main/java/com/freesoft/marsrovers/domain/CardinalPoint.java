@@ -8,4 +8,11 @@ public enum CardinalPoint {
     CardinalPoint(String value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "CardinalPoint{" +
+                "value='" + value + '\'' +
+                '}';
+    }
 }
