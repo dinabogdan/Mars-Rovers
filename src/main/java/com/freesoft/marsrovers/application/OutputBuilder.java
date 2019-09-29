@@ -18,6 +18,9 @@ public enum OutputBuilder {
                     stringBuilder.append(rover.getCurrentOrientation().name());
                     stringBuilder.append(" ");
                 });
+        roverMap.getRovers()
+                .values()
+                .removeIf(rover -> rover.getToBeExecutedCommands().size() == 0);
         return stringBuilder.toString();
     }
 }
