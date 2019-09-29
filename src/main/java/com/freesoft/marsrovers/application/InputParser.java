@@ -1,4 +1,4 @@
-package com.freesoft.marsrovers.infrastructure.socket;
+package com.freesoft.marsrovers.application;
 
 import com.freesoft.marsrovers.application.exception.InvalidInputException;
 import com.freesoft.marsrovers.domain.*;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public enum SocketInputParser {
+public enum InputParser {
     INSTANCE;
 
     private Function<String, Command> stringToCommandFunction = c -> {
@@ -27,20 +27,20 @@ public enum SocketInputParser {
         }
     };
 
-    SocketInputParser() {
+    InputParser() {
 
     }
 
     public List<String> splitInput(String input) {
         final String WHITE_SPACE = " ";
-        SocketInputValidator.INSTANCE.validateIfNullOrEmpty(input);
+        InputValidator.INSTANCE.validateIfNullOrEmpty(input);
         String[] inputComponents = input.split(WHITE_SPACE);
-        SocketInputValidator.INSTANCE.validateLength(inputComponents);
+        InputValidator.INSTANCE.validateLength(inputComponents);
         return Arrays.asList(inputComponents);
     }
 
     public Plateau createPlateau(String firstInputElement, String secondInputElement) {
-        SocketInputValidator.INSTANCE.validateIfNumbers(Arrays.asList(firstInputElement, secondInputElement));
+        InputValidator.INSTANCE.validateIfNumbers(Arrays.asList(firstInputElement, secondInputElement));
         return Plateau.PlateauBuilder.aPlateau()
                 .withBottomLeft(Point.PointBuilder
                         .aPoint()
@@ -66,7 +66,7 @@ public enum SocketInputParser {
     }
 
     private Rover createRover(List<String> roverInput) {
-        SocketInputValidator.INSTANCE.validateIfNumbers(Collections.singletonList(roverInput.get(0)));
+        InputValidator.INSTANCE.validateIfNumbers(Collections.singletonList(roverInput.get(0)));
         Point currentPosition = parsePositionDetails(roverInput);
         CardinalPoint currentOrientation = CardinalPoint.valueOf(roverInput.get(2));
         List<Command> toBeExecutedCommands = parseToBeExecutedCommands(roverInput);

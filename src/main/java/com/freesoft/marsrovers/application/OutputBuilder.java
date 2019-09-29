@@ -1,12 +1,12 @@
-package com.freesoft.marsrovers.infrastructure.socket;
+package com.freesoft.marsrovers.application;
 
 
 import com.freesoft.marsrovers.domain.RoverMap;
 
-public enum SocketOutputParser {
+public enum OutputBuilder {
     INSTANCE;
 
-    String buildOutput(RoverMap roverMap) {
+    public String buildOutput(RoverMap roverMap) {
         StringBuilder stringBuilder = new StringBuilder();
         roverMap.getRovers()
                 .values()

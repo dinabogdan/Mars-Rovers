@@ -1,4 +1,4 @@
-package com.freesoft.marsrovers.infrastructure.socket;
+package com.freesoft.marsrovers.application;
 
 import com.freesoft.marsrovers.domain.CardinalPoint;
 import com.freesoft.marsrovers.domain.Rover;
@@ -14,7 +14,7 @@ public class SocketInputParserTest {
 
     @Test
     public void GIVENAnInputWHENParsingItTHENReturnTheExpectedResult() {
-        List<String> input = SocketInputParser.INSTANCE.splitInput("5 5 1 2 N LMLMLMLMM");
+        List<String> input = InputParser.INSTANCE.splitInput("5 5 1 2 N LMLMLMLMM");
         assertEquals("5", input.get(0));
         assertEquals("5", input.get(1));
         assertEquals("1", input.get(2));
@@ -36,7 +36,7 @@ public class SocketInputParserTest {
                 "MMRMMRMRRM"
         );
 
-        List<Rover> rovers = SocketInputParser.INSTANCE.createRovers(input);
+        List<Rover> rovers = InputParser.INSTANCE.createRovers(input);
         assertNotNull(rovers);
         assertEquals(2, rovers.size());
         assertEquals(1, rovers.get(0).getCurrentPosition().getX(), 0);

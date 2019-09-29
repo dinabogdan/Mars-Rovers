@@ -1,13 +1,13 @@
-package com.freesoft.marsrovers.infrastructure.socket;
+package com.freesoft.marsrovers.application;
 
 import com.freesoft.marsrovers.application.exception.InvalidInputException;
 
 import java.util.List;
 
-public enum SocketInputValidator {
+public enum InputValidator {
     INSTANCE;
 
-    SocketInputValidator() {
+    InputValidator() {
     }
 
     boolean isNullOrEmpty(String input) {
