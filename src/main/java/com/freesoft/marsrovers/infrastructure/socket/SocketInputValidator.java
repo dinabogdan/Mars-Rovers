@@ -20,7 +20,7 @@ public enum SocketInputValidator {
 
     boolean isNotNumber(String inputElement) {
         String regex = "[0-9]+";
-        return inputElement.matches(regex);
+        return !inputElement.matches(regex);
     }
 
     void validateIfNumbers(List<String> input) {

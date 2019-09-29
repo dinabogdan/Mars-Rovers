@@ -1,6 +1,7 @@
 package com.freesoft.marsrovers.infrastructure.socket;
 
 import com.freesoft.marsrovers.application.RoverManager;
+import com.freesoft.marsrovers.application.exception.InvalidInputException;
 import com.freesoft.marsrovers.domain.RoverMap;
 import com.freesoft.marsrovers.domain.Plateau;
 import com.freesoft.marsrovers.domain.Rover;
@@ -32,14 +33,16 @@ public final class SocketListener implements Runnable {
             while (in.hasNextLine()) {
                 try {
                     String inputLine = in.nextLine();
+                    System.out.println("Received input: " + inputLine);
                     SocketInputParser inputParser = SocketInputParser.INSTANCE;
                     List<String> inputComponents = inputParser.splitInput(inputLine);
                     Plateau plateau = inputParser.createPlateau(inputComponents.get(0), inputComponents.get(1));
-                    List<Rover> rovers = inputParser.createRovers(inputComponents.subList(3, inputComponents.size()));
+                    List<Rover> rovers = inputParser.createRovers(inputComponents.subList(2, inputComponents.size()));
                     rovers.forEach(RoverMap.INSTANCE::addRover);
-                    RoverManager.INSTANCE.init(plateau, RoverMap.INSTANCE);
-                } catch (RuntimeException validationEx) {
-
+                    RoverManager.INSTANCE.init(plateau, RoverMap.INSTANCE).startRovers();
+                    out.println(SocketOutputParser.INSTANCE.buildOutput(RoverMap.INSTANCE));
+                } catch (InvalidInputException validationEx) {
+                    out.println("The received input is invalid! The reason is: " + validationEx.getMessage());
                 }
             }
         } catch (Exception ex) {

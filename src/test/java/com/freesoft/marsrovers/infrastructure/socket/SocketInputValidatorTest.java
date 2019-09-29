@@ -41,4 +41,16 @@ public class SocketInputValidatorTest {
         boolean result = SocketInputValidator.INSTANCE.isNullOrEmpty(input);
         assertTrue(result);
     }
+
+    @Test
+    public void GIVENANumberWHENCheckIfIsNotANumberTHENReturnFalse() {
+        String number = "5";
+        assertFalse(SocketInputValidator.INSTANCE.isNotNumber(number));
+    }
+
+    @Test
+    public void GIVENAnInvalidNumberWHENCheckIfItsNotANumberTHENReturnTrue() {
+        String invalidNumber = "3a";
+        assertTrue(SocketInputValidator.INSTANCE.isNotNumber(invalidNumber));
+    }
 }

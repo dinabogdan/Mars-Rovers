@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public enum SocketInputParser {
     INSTANCE;
@@ -68,17 +67,9 @@ public enum SocketInputParser {
 
     private Rover createRover(List<String> roverInput) {
         SocketInputValidator.INSTANCE.validateIfNumbers(Collections.singletonList(roverInput.get(0)));
-        Point currentPosition = Point.PointBuilder
-                .aPoint()
-                .withX(Double.parseDouble(roverInput.get(0)))
-                .withY(Double.parseDouble(roverInput.get(1)))
-                .build();
+        Point currentPosition = parsePositionDetails(roverInput);
         CardinalPoint currentOrientation = CardinalPoint.valueOf(roverInput.get(2));
-
-        List<Command> toBeExecutedCommands = Stream.of(roverInput.get(3).toCharArray())
-                .map(String::valueOf)
-                .map(stringToCommandFunction)
-                .collect(Collectors.toList());
+        List<Command> toBeExecutedCommands = parseToBeExecutedCommands(roverInput);
 
         return Rover.RoverBuilder.aRover()
                 .withCurrentOrientation(currentOrientation)
@@ -86,6 +77,24 @@ public enum SocketInputParser {
                 .withToBeExecutedCommands(toBeExecutedCommands)
                 .build();
 
+    }
+
+    private Point parsePositionDetails(List<String> roverInput) {
+        return Point.PointBuilder
+                .aPoint()
+                .withX(Double.parseDouble(roverInput.get(0)))
+                .withY(Double.parseDouble(roverInput.get(1)))
+                .build();
+    }
+
+    private List<Command> parseToBeExecutedCommands(List<String> roverInput) {
+        return roverInput.get(3).chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.toList())
+                .stream()
+                .map(String::valueOf)
+                .map(stringToCommandFunction)
+                .collect(Collectors.toList());
     }
 
 
