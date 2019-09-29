@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public final class Point {
 
-    private final double x;
-    private final double y;
+    private final int x;
+    private final int y;
 
-    private Point(double x, double y) {
+    private Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
@@ -43,8 +43,8 @@ public final class Point {
     }
 
     public static final class PointBuilder {
-        private double x;
-        private double y;
+        private int x;
+        private int y;
 
         private PointBuilder() {
         }
@@ -53,12 +53,12 @@ public final class Point {
             return new PointBuilder();
         }
 
-        public PointBuilder withX(double x) {
+        public PointBuilder withX(int x) {
             this.x = x;
             return this;
         }
 
-        public PointBuilder withY(double y) {
+        public PointBuilder withY(int y) {
             this.y = y;
             return this;
         }

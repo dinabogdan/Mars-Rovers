@@ -49,8 +49,8 @@ public enum InputParser {
                         .build())
                 .withUpperRight(Point.PointBuilder
                         .aPoint()
-                        .withX(Long.parseLong(firstInputElement))
-                        .withY(Long.parseLong(secondInputElement))
+                        .withX(Integer.parseInt(firstInputElement))
+                        .withY(Integer.parseInt(secondInputElement))
                         .build())
                 .build();
     }
@@ -82,8 +82,8 @@ public enum InputParser {
     private Point parsePositionDetails(List<String> roverInput) {
         return Point.PointBuilder
                 .aPoint()
-                .withX(Double.parseDouble(roverInput.get(0)))
-                .withY(Double.parseDouble(roverInput.get(1)))
+                .withX(Integer.parseInt(roverInput.get(0)))
+                .withY(Integer.parseInt(roverInput.get(1)))
                 .build();
     }
 
